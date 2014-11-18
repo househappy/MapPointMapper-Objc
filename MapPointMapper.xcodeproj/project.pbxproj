@@ -13,6 +13,7 @@
 		547424C01A1BF0F900A8478C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 547424BF1A1BF0F900A8478C /* Images.xcassets */; };
 		547424C31A1BF0F900A8478C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 547424C11A1BF0F900A8478C /* Main.storyboard */; };
 		547424CF1A1BF0F900A8478C /* MapPointMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 547424CE1A1BF0F900A8478C /* MapPointMapperTests.m */; };
+		547424D91A1BF2E900A8478C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 547424D81A1BF2E900A8478C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		547424C81A1BF0F900A8478C /* MapPointMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapPointMapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		547424CD1A1BF0F900A8478C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		547424CE1A1BF0F900A8478C /* MapPointMapperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapPointMapperTests.m; sourceTree = "<group>"; };
+		547424D81A1BF2E900A8478C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		547424DA1A1BF2E900A8478C /* MapPointMapper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MapPointMapper.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				547424D91A1BF2E900A8478C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +65,7 @@
 		547424A91A1BF0F900A8478C = {
 			isa = PBXGroup;
 			children = (
+				547424D81A1BF2E900A8478C /* MapKit.framework */,
 				547424B41A1BF0F900A8478C /* MapPointMapper */,
 				547424CB1A1BF0F900A8478C /* MapPointMapperTests */,
 				547424B31A1BF0F900A8478C /* Products */,
@@ -79,6 +84,7 @@
 		547424B41A1BF0F900A8478C /* MapPointMapper */ = {
 			isa = PBXGroup;
 			children = (
+				547424DA1A1BF2E900A8478C /* MapPointMapper.entitlements */,
 				547424B71A1BF0F900A8478C /* AppDelegate.h */,
 				547424B81A1BF0F900A8478C /* AppDelegate.m */,
 				547424BC1A1BF0F900A8478C /* ViewController.h */,
@@ -165,6 +171,15 @@
 				TargetAttributes = {
 					547424B11A1BF0F900A8478C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 7AM27DZVQU;
+						SystemCapabilities = {
+							com.apple.Maps.Mac = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					547424C71A1BF0F900A8478C = {
 						CreatedOnToolsVersion = 6.1;
@@ -331,10 +346,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MapPointMapper/MapPointMapper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MapPointMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -342,10 +361,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MapPointMapper/MapPointMapper.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = MapPointMapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

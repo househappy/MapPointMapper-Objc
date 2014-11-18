@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6198" systemVersion="14A297b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+        <plugIn identifier="com.apple.MapKitIBPlugin" version="6250"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -641,19 +642,19 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider=""/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="600" height="480"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
@@ -667,15 +668,93 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-kh-AbZ">
+                                <rect key="frame" x="27" y="432" width="97" height="32"/>
+                                <buttonCell key="cell" type="push" title="Load File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwe-NM-c7V">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadFilePressed:" target="XfG-lQ-9wD" id="E02-SL-wgi"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cnc-9Q-0AO">
+                                <rect key="frame" x="20" y="399" width="110" height="32"/>
+                                <buttonCell key="cell" type="push" title="Map Points" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4eW-pr-juq">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="mapPointsButtonPresssed:" target="XfG-lQ-9wD" id="5hF-nQ-qUk"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bPO-wg-hFy">
+                                <rect key="frame" x="71" y="0.0" width="8" height="17"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="o7w-Ol-aCA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pYm-M0-f4Z">
+                                <rect key="frame" x="464" y="-1" width="122" height="32"/>
+                                <buttonCell key="cell" type="push" title="Enter As Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Laj-X1-mkn">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="enterAsTextPressed:" target="XfG-lQ-9wD" id="eyt-mG-rl9"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-Qv-wme">
+                                <rect key="frame" x="160" y="7" width="302" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0c2-Nc-eQ5">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <mapView mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="H4d-Fw-ZGD">
+                                <rect key="frame" x="160" y="33" width="440" height="447"/>
+                            </mapView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="0n1-IC-vMy"/>
+                            <constraint firstAttribute="trailing" secondItem="H4d-Fw-ZGD" secondAttribute="trailing" id="33F-du-HDL"/>
+                            <constraint firstItem="ajg-Qv-wme" firstAttribute="leading" secondItem="H4d-Fw-ZGD" secondAttribute="leading" id="4jv-3r-wBd"/>
+                            <constraint firstItem="pYm-M0-f4Z" firstAttribute="leading" secondItem="ajg-Qv-wme" secondAttribute="trailing" constant="8" id="7MJ-Ek-CH6"/>
+                            <constraint firstItem="5h3-kh-AbZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Cck-PC-Je3"/>
+                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="centerX" secondItem="bPO-wg-hFy" secondAttribute="centerX" id="JBP-N7-XgB"/>
+                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="26" id="JZn-aB-XyQ"/>
+                            <constraint firstAttribute="trailing" secondItem="pYm-M0-f4Z" secondAttribute="trailing" constant="20" id="Ohh-Ro-Bbe"/>
+                            <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="Cnc-9Q-0AO" secondAttribute="trailing" constant="36" id="Xev-Eb-KEL"/>
+                            <constraint firstItem="5h3-kh-AbZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="aIc-hc-Ujh"/>
+                            <constraint firstAttribute="bottom" secondItem="bPO-wg-hFy" secondAttribute="bottom" id="do1-GE-I0D"/>
+                            <constraint firstItem="H4d-Fw-ZGD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fS1-Is-a3R"/>
+                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="iUt-We-LMR"/>
+                            <constraint firstAttribute="bottom" secondItem="pYm-M0-f4Z" secondAttribute="bottom" constant="6" id="j28-tZ-x9k"/>
+                            <constraint firstItem="pYm-M0-f4Z" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="6" id="o4s-Zs-awt"/>
+                            <constraint firstAttribute="bottom" secondItem="ajg-Qv-wme" secondAttribute="bottom" constant="7" id="o6O-I3-erW"/>
+                            <constraint firstItem="ajg-Qv-wme" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="4" id="uad-bJ-CaG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loadFileButton" destination="5h3-kh-AbZ" id="80h-3z-PT6"/>
+                        <outlet property="mapPointsButton" destination="Cnc-9Q-0AO" id="J11-k7-vgK"/>
+                        <outlet property="mapview" destination="H4d-Fw-ZGD" id="Dr3-xp-dor"/>
+                        <outlet property="outputLabel" destination="bPO-wg-hFy" id="dmg-kH-I6R"/>
+                        <outlet property="textField" destination="ajg-Qv-wme" id="pb5-d8-XAJ"/>
+                        <outlet property="textFieldButton" destination="pYm-M0-f4Z" id="l2z-ll-KIE"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="75" y="573"/>
         </scene>
     </scenes>
 </document>
