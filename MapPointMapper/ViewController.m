@@ -29,6 +29,7 @@
 @property (weak) IBOutlet MKMapView *mapview;
 @property (weak) IBOutlet NSButton *loadFileButton;
 @property (weak) IBOutlet NSButton *mapPointsButton;
+@property (weak) IBOutlet NSButton *clearLinesButton;
 
 @property (weak) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSButton *textFieldButton;
@@ -73,7 +74,6 @@
 - (IBAction)mapPointsButtonPresssed:(NSButton *)sender {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     // map points
-    [self.mapview removeOverlays:self.mapview.overlays];
     
     NSInteger count = 0;
     CLLocationCoordinate2D *mappoints = malloc(sizeof(CLLocationCoordinate2D) * self.mapPoints.count);
@@ -90,6 +90,9 @@
     [self.mapview setVisibleMapRect:polyline.boundingMapRect animated:YES];
     
     free(mappoints);
+}
+- (IBAction)clearLinesButtonPressed:(NSButton *)sender {
+    [self.mapview removeOverlays:self.mapview.overlays];
 }
 
 

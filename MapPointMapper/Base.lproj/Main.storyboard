@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
         <plugIn identifier="com.apple.MapKitIBPlugin" version="6250"/>
     </dependencies>
@@ -722,6 +723,16 @@
                             <mapView mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="H4d-Fw-ZGD">
                                 <rect key="frame" x="160" y="33" width="440" height="447"/>
                             </mapView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wL6-04-qfV">
+                                <rect key="frame" x="21" y="366" width="109" height="32"/>
+                                <buttonCell key="cell" type="push" title="Clear Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FXl-qu-PaA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearLinesButtonPressed:" target="XfG-lQ-9wD" id="S7U-7Y-aYo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="0n1-IC-vMy"/>
@@ -731,7 +742,9 @@
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Cck-PC-Je3"/>
                             <constraint firstItem="Cnc-9Q-0AO" firstAttribute="centerX" secondItem="bPO-wg-hFy" secondAttribute="centerX" id="JBP-N7-XgB"/>
                             <constraint firstItem="Cnc-9Q-0AO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="26" id="JZn-aB-XyQ"/>
+                            <constraint firstItem="wL6-04-qfV" firstAttribute="top" secondItem="Cnc-9Q-0AO" secondAttribute="bottom" constant="12" id="LOv-dX-00c"/>
                             <constraint firstAttribute="trailing" secondItem="pYm-M0-f4Z" secondAttribute="trailing" constant="20" id="Ohh-Ro-Bbe"/>
+                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="WhC-1u-SAe"/>
                             <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="Cnc-9Q-0AO" secondAttribute="trailing" constant="36" id="Xev-Eb-KEL"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="aIc-hc-Ujh"/>
                             <constraint firstAttribute="bottom" secondItem="bPO-wg-hFy" secondAttribute="bottom" id="do1-GE-I0D"/>
@@ -740,10 +753,12 @@
                             <constraint firstAttribute="bottom" secondItem="pYm-M0-f4Z" secondAttribute="bottom" constant="6" id="j28-tZ-x9k"/>
                             <constraint firstItem="pYm-M0-f4Z" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="6" id="o4s-Zs-awt"/>
                             <constraint firstAttribute="bottom" secondItem="ajg-Qv-wme" secondAttribute="bottom" constant="7" id="o6O-I3-erW"/>
+                            <constraint firstItem="wL6-04-qfV" firstAttribute="centerX" secondItem="Cnc-9Q-0AO" secondAttribute="centerX" id="oy6-Pc-Kpv"/>
                             <constraint firstItem="ajg-Qv-wme" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="4" id="uad-bJ-CaG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="clearLinesButton" destination="wL6-04-qfV" id="OrT-eF-2yl"/>
                         <outlet property="loadFileButton" destination="5h3-kh-AbZ" id="80h-3z-PT6"/>
                         <outlet property="mapPointsButton" destination="Cnc-9Q-0AO" id="J11-k7-vgK"/>
                         <outlet property="mapview" destination="H4d-Fw-ZGD" id="Dr3-xp-dor"/>
