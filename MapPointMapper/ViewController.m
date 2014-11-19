@@ -30,10 +30,13 @@
 @property (weak) IBOutlet NSButton *loadFileButton;
 @property (weak) IBOutlet NSButton *removeLastLineButton;
 @property (weak) IBOutlet NSButton *removeAllLinesButton;
+@property (weak) IBOutlet NSButton *switchLatLngButton;
+@property (weak) IBOutlet NSTextField *latlngLabel;
 
 @property (weak) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSButton *textFieldButton;
 
+@property (nonatomic) BOOL parseLatitudeFirst;
 @end
 
 @implementation ViewController
@@ -42,6 +45,7 @@
     [super viewDidLoad];
     self.mapview.delegate = self;
     self.textField.delegate = self;
+    self.parseLatitudeFirst = YES;
 }
 
 - (void)viewWillAppear {
@@ -63,6 +67,14 @@
 - (IBAction)addLineFromTextPressed:(NSButton *)sender {
     if (self.textField.stringValue) {
         [self parseInput:self.textField.stringValue];
+    }
+}
+- (IBAction)switchLatLngPressed:(NSButton *)sender {
+    self.parseLatitudeFirst = !self.parseLatitudeFirst;
+    if (self.parseLatitudeFirst) {
+        self.latlngLabel.stringValue = @"Lat/Lng";
+    } else {
+        self.latlngLabel.stringValue = @"Lng/Lat";
     }
 }
 
@@ -136,8 +148,14 @@
     
     NSMutableArray *mapPoints = [@[] mutableCopy];
     for (NSInteger i = 0; i < components.count - 1; i += 2) {
-        NSString *lat = [components objectAtIndex:i];
-        NSString *lng = [components objectAtIndex:i + 1];
+        NSString *lat, *lng;
+        if (self.parseLatitudeFirst) {
+            lat = [components objectAtIndex:i];
+            lng = [components objectAtIndex:i + 1];
+        } else {
+            lng = [components objectAtIndex:i];
+            lat = [components objectAtIndex:i + 1];
+        }
         
         [mapPoints addObject:[[DMMMapPoint alloc] initWithLatString:lat lngString:lng]];
     }

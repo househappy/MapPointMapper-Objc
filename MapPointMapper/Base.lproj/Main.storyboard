@@ -278,18 +278,40 @@
                                     <action selector="removeLastLinePressed:" target="XfG-lQ-9wD" id="8eb-qO-HAN"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tjD-em-thR">
+                                <rect key="frame" x="5" y="26" width="141" height="32"/>
+                                <buttonCell key="cell" type="push" title="Switch Lat/Long" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KeY-Ll-QYH">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="switchLatLngPressed:" target="XfG-lQ-9wD" id="mRh-CG-54T"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y10-0Y-mSs">
+                                <rect key="frame" x="50" y="6" width="52" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lat/Lng" id="ivZ-gn-Moe">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="H4d-Fw-ZGD" secondAttribute="trailing" id="33F-du-HDL"/>
                             <constraint firstItem="9Kc-9P-B0H" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="4Rs-sU-mRc"/>
+                            <constraint firstItem="tjD-em-thR" firstAttribute="centerX" secondItem="y10-0Y-mSs" secondAttribute="centerX" id="6sf-5w-BjX"/>
                             <constraint firstItem="pYm-M0-f4Z" firstAttribute="leading" secondItem="ajg-Qv-wme" secondAttribute="trailing" constant="8" id="7MJ-Ek-CH6"/>
                             <constraint firstItem="wL6-04-qfV" firstAttribute="centerX" secondItem="9Kc-9P-B0H" secondAttribute="centerX" id="CPW-rV-R1s"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Cck-PC-Je3"/>
                             <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="ajg-Qv-wme" secondAttribute="leading" id="F7L-YC-dHP"/>
                             <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="9Kc-9P-B0H" secondAttribute="trailing" constant="15" id="GNP-ax-Sdr"/>
                             <constraint firstAttribute="trailing" secondItem="pYm-M0-f4Z" secondAttribute="trailing" constant="20" id="Ohh-Ro-Bbe"/>
+                            <constraint firstItem="y10-0Y-mSs" firstAttribute="top" secondItem="tjD-em-thR" secondAttribute="bottom" constant="10" id="Sch-C3-ulE"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="centerX" secondItem="9Kc-9P-B0H" secondAttribute="centerX" id="Y7s-jU-BxI"/>
+                            <constraint firstItem="tjD-em-thR" firstAttribute="centerX" secondItem="wL6-04-qfV" secondAttribute="centerX" id="Z3m-lE-vjy"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="aIc-hc-Ujh"/>
+                            <constraint firstAttribute="bottom" secondItem="y10-0Y-mSs" secondAttribute="bottom" constant="6" id="dCX-i0-A3i"/>
                             <constraint firstItem="H4d-Fw-ZGD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fS1-Is-a3R"/>
                             <constraint firstAttribute="bottom" secondItem="pYm-M0-f4Z" secondAttribute="bottom" constant="6" id="j28-tZ-x9k"/>
                             <constraint firstItem="wL6-04-qfV" firstAttribute="top" secondItem="9Kc-9P-B0H" secondAttribute="bottom" constant="12" id="mQz-7N-fUZ"/>
@@ -299,10 +321,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="latlngLabel" destination="y10-0Y-mSs" id="zew-AK-OeY"/>
                         <outlet property="loadFileButton" destination="5h3-kh-AbZ" id="80h-3z-PT6"/>
                         <outlet property="mapview" destination="H4d-Fw-ZGD" id="Dr3-xp-dor"/>
                         <outlet property="removeAllLinesButton" destination="wL6-04-qfV" id="xMK-e8-9x9"/>
                         <outlet property="removeLastLineButton" destination="9Kc-9P-B0H" id="ZwQ-Jt-BtU"/>
+                        <outlet property="switchLatLngButton" destination="tjD-em-thR" id="wz7-ww-t9Z"/>
                         <outlet property="textField" destination="ajg-Qv-wme" id="pb5-d8-XAJ"/>
                         <outlet property="textFieldButton" destination="pYm-M0-f4Z" id="l2z-ll-KIE"/>
                     </connections>
