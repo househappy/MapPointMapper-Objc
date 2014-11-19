@@ -40,19 +40,23 @@
 @end
 
 @implementation ViewController
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView {
+    [super loadView];
     self.mapview.delegate = self;
     self.textField.delegate = self;
     self.mapPointsButton.enabled = NO;
+    self.title = @"Map Point Mapper";
 }
 
-- (void)viewWillAppear {
-    [super viewWillAppear];
-    self.title = @"Map Point Mapper";
-    self.outputLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.outputLabel.stringValue = @"Map Point Mapper\nv1.1";
-}
+//- (void)viewDidLoad {
+//    [super viewDidLoad];
+//    
+//}
+//
+//- (void)viewWillAppear {
+//    [super viewWillAppear];
+//    
+//}
 
 - (IBAction)loadFilePressed:(NSButton *)sender {
     NSLog(@"%s", __PRETTY_FUNCTION__);
