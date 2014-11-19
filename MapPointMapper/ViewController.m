@@ -51,7 +51,7 @@
     [super viewWillAppear];
     self.title = @"Map Point Mapper";
     self.outputLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    self.outputLabel.stringValue = @"Map Point Mapper\nv0.0.1";
+    self.outputLabel.stringValue = @"Map Point Mapper\nv1.1";
 }
 
 - (IBAction)loadFilePressed:(NSButton *)sender {
