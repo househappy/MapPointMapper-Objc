@@ -120,17 +120,11 @@
         return;
     }
     
-    [self parseFileString:fileContentsString];
-}
-
-- (void)parseFileString:(NSString *)fileContentsString {
-    NSString *newLinesRemoved = [fileContentsString stringByReplacingOccurrencesOfString:@"\n" withString:@","];
-    
-    [self parseInput:newLinesRemoved];
+    [self parseInput:fileContentsString];
 }
 
 - (void)parseInput:(NSString *)input {
-    NSString *strippedSpaces = [input stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *strippedSpaces = [[input stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@","];
     
     NSArray *components = [strippedSpaces componentsSeparatedByString:@","];
     
