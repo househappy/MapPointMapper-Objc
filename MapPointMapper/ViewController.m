@@ -28,39 +28,26 @@
 @interface ViewController() <NSOpenSavePanelDelegate, MKMapViewDelegate, NSTextFieldDelegate>
 @property (weak) IBOutlet MKMapView *mapview;
 @property (weak) IBOutlet NSButton *loadFileButton;
-@property (weak) IBOutlet NSButton *mapPointsButton;
-@property (weak) IBOutlet NSButton *clearLinesButton;
+@property (weak) IBOutlet NSButton *removeLastLineButton;
+@property (weak) IBOutlet NSButton *removeAllLinesButton;
 
 @property (weak) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSButton *textFieldButton;
 
-@property (weak) IBOutlet NSTextField *outputLabel;
-
-@property (strong, nonatomic) NSArray *mapPoints;
 @end
 
 @implementation ViewController
-- (void)loadView {
-    [super loadView];
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     self.mapview.delegate = self;
     self.textField.delegate = self;
-    self.mapPointsButton.enabled = NO;
-
 }
 
-//- (void)viewDidLoad {
-//    [super viewDidLoad];
-//    self.mapview.delegate = self;
-//    self.textField.delegate = self;
-//    self.mapPointsButton.enabled = NO;
-//}
-//
-//- (void)viewWillAppear {
-//    [super viewWillAppear];
-//    self.title = @"Map Point Mapper";
-//    self.outputLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    self.outputLabel.stringValue = @"Map Point Mapper\nv1.1";
-//}
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    self.title = @"Map Point Mapper";
+}
 
 - (IBAction)loadFilePressed:(NSButton *)sender {
     NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -73,36 +60,39 @@
         [self readFileAtURL:openPanel.URL];
     }];
 }
-- (IBAction)enterAsTextPressed:(NSButton *)sender {
+- (IBAction)addLineFromTextPressed:(NSButton *)sender {
     if (self.textField.stringValue) {
         [self parseInput:self.textField.stringValue];
     }
 }
 
-- (IBAction)mapPointsButtonPresssed:(NSButton *)sender {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-    // map points
-    
+- (void)drawPointsOnMap:(NSArray *)mapPoints {
     NSInteger count = 0;
-    CLLocationCoordinate2D *mappoints = malloc(sizeof(CLLocationCoordinate2D) * self.mapPoints.count);
-    for (DMMMapPoint *mapPoint in self.mapPoints) {
-        mappoints[count] = mapPoint.coordinate;
+    CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * mapPoints.count);
+    for (DMMMapPoint *mapPoint in mapPoints) {
+        coordinates[count] = mapPoint.coordinate;
         ++count;
     }
     
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:mappoints count:count];
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:count];
     
     [self.mapview addOverlay:polyline level:MKOverlayLevelAboveRoads];
     
     [self.mapview setNeedsDisplay:YES];
     [self.mapview setVisibleMapRect:polyline.boundingMapRect animated:YES];
     
-    free(mappoints);
+    free(coordinates);
 }
+
+- (IBAction)removeLastLinePressed:(NSButton *)sender {
+    if (self.mapview.overlays && self.mapview.overlays.count > 0) {
+        [self.mapview removeOverlay:self.mapview.overlays.lastObject];
+    }
+}
+
 - (IBAction)clearLinesButtonPressed:(NSButton *)sender {
     [self.mapview removeOverlays:self.mapview.overlays];
 }
-
 
 #pragma mark - MapView
 
@@ -117,18 +107,15 @@
 - (void)readFileAtURL:(NSURL *)fileURL {
     if (!fileURL) { return; }
     
-    self.mapPointsButton.enabled = NO;
     
     if (![[NSFileManager defaultManager] isReadableFileAtPath:fileURL.absoluteString]) {
         NSLog(@"ERROR: Unreadable file at %@", fileURL);
-        self.outputLabel.stringValue = [NSString stringWithFormat:@"ERROR: Unreadable file at %@", fileURL];
     }
     
     NSError *error;
     NSString *fileContentsString = [NSString stringWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:&error];
     
     if (error) {
-        self.outputLabel.stringValue = [NSString stringWithFormat:@"ERROR: reaing file: %@", fileURL];
         [[NSAlert alertWithError:error] runModal];
         return;
     }
@@ -153,30 +140,21 @@
         return;
     }
     
-    NSMutableArray *arr = [@[] mutableCopy];
+    NSMutableArray *mapPoints = [@[] mutableCopy];
     for (NSInteger i = 0; i < components.count - 1; i += 2) {
         NSString *lat = [components objectAtIndex:i];
         NSString *lng = [components objectAtIndex:i + 1];
         
-        [arr addObject:[[DMMMapPoint alloc] initWithLatString:lat lngString:lng]];
+        [mapPoints addObject:[[DMMMapPoint alloc] initWithLatString:lat lngString:lng]];
     }
     
-    self.mapPoints = arr;
-}
-
-- (void)setMapPoints:(NSArray *)mapPoints {
-    _mapPoints = mapPoints;
-    if (!_mapPoints) { return; }
-    
-    self.mapPointsButton.enabled = YES;
-    
-    [self mapPointsButtonPresssed:self.mapPointsButton];
+    [self drawPointsOnMap:mapPoints];
 }
 
 #pragma mark - NSTextFieldDelegate
 - (void)keyUp:(NSEvent *)theEvent {
     if (theEvent.keyCode == 36) {
-        [self enterAsTextPressed:self.textFieldButton];
+        [self addLineFromTextPressed:self.textFieldButton];
     }
 }
 

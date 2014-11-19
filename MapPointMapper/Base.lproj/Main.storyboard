@@ -237,36 +237,18 @@
                                     <action selector="loadFilePressed:" target="XfG-lQ-9wD" id="E02-SL-wgi"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cnc-9Q-0AO">
-                                <rect key="frame" x="20" y="399" width="110" height="32"/>
-                                <buttonCell key="cell" type="push" title="Map Points" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4eW-pr-juq">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="mapPointsButtonPresssed:" target="XfG-lQ-9wD" id="5hF-nQ-qUk"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bPO-wg-hFy">
-                                <rect key="frame" x="71" y="0.0" width="8" height="17"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" id="o7w-Ol-aCA">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pYm-M0-f4Z">
-                                <rect key="frame" x="464" y="-1" width="122" height="32"/>
-                                <buttonCell key="cell" type="push" title="Enter As Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Laj-X1-mkn">
+                                <rect key="frame" x="426" y="-1" width="160" height="32"/>
+                                <buttonCell key="cell" type="push" title="Add Line From Text" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Laj-X1-mkn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="enterAsTextPressed:" target="XfG-lQ-9wD" id="eyt-mG-rl9"/>
+                                    <action selector="addLineFromTextPressed:" target="XfG-lQ-9wD" id="30X-Sj-yKV"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-Qv-wme">
-                                <rect key="frame" x="160" y="7" width="302" height="22"/>
+                                <rect key="frame" x="160" y="7" width="264" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0c2-Nc-eQ5">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -277,8 +259,8 @@
                                 <rect key="frame" x="160" y="33" width="440" height="447"/>
                             </mapView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wL6-04-qfV">
-                                <rect key="frame" x="21" y="366" width="109" height="32"/>
-                                <buttonCell key="cell" type="push" title="Clear Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FXl-qu-PaA">
+                                <rect key="frame" x="2" y="366" width="147" height="32"/>
+                                <buttonCell key="cell" type="push" title="Remove All Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FXl-qu-PaA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -286,36 +268,41 @@
                                     <action selector="clearLinesButtonPressed:" target="XfG-lQ-9wD" id="S7U-7Y-aYo"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9Kc-9P-B0H">
+                                <rect key="frame" x="0.0" y="399" width="151" height="32"/>
+                                <buttonCell key="cell" type="push" title="Remove Last Line" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jqW-ki-lLo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="removeLastLinePressed:" target="XfG-lQ-9wD" id="8eb-qO-HAN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="0n1-IC-vMy"/>
                             <constraint firstAttribute="trailing" secondItem="H4d-Fw-ZGD" secondAttribute="trailing" id="33F-du-HDL"/>
-                            <constraint firstItem="ajg-Qv-wme" firstAttribute="leading" secondItem="H4d-Fw-ZGD" secondAttribute="leading" id="4jv-3r-wBd"/>
+                            <constraint firstItem="9Kc-9P-B0H" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="4Rs-sU-mRc"/>
                             <constraint firstItem="pYm-M0-f4Z" firstAttribute="leading" secondItem="ajg-Qv-wme" secondAttribute="trailing" constant="8" id="7MJ-Ek-CH6"/>
+                            <constraint firstItem="wL6-04-qfV" firstAttribute="centerX" secondItem="9Kc-9P-B0H" secondAttribute="centerX" id="CPW-rV-R1s"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Cck-PC-Je3"/>
-                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="centerX" secondItem="bPO-wg-hFy" secondAttribute="centerX" id="JBP-N7-XgB"/>
-                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="26" id="JZn-aB-XyQ"/>
-                            <constraint firstItem="wL6-04-qfV" firstAttribute="top" secondItem="Cnc-9Q-0AO" secondAttribute="bottom" constant="12" id="LOv-dX-00c"/>
+                            <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="ajg-Qv-wme" secondAttribute="leading" id="F7L-YC-dHP"/>
+                            <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="9Kc-9P-B0H" secondAttribute="trailing" constant="15" id="GNP-ax-Sdr"/>
                             <constraint firstAttribute="trailing" secondItem="pYm-M0-f4Z" secondAttribute="trailing" constant="20" id="Ohh-Ro-Bbe"/>
-                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="WhC-1u-SAe"/>
-                            <constraint firstItem="H4d-Fw-ZGD" firstAttribute="leading" secondItem="Cnc-9Q-0AO" secondAttribute="trailing" constant="36" id="Xev-Eb-KEL"/>
+                            <constraint firstItem="5h3-kh-AbZ" firstAttribute="centerX" secondItem="9Kc-9P-B0H" secondAttribute="centerX" id="Y7s-jU-BxI"/>
                             <constraint firstItem="5h3-kh-AbZ" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="33" id="aIc-hc-Ujh"/>
-                            <constraint firstAttribute="bottom" secondItem="bPO-wg-hFy" secondAttribute="bottom" id="do1-GE-I0D"/>
                             <constraint firstItem="H4d-Fw-ZGD" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fS1-Is-a3R"/>
-                            <constraint firstItem="Cnc-9Q-0AO" firstAttribute="top" secondItem="5h3-kh-AbZ" secondAttribute="bottom" constant="12" id="iUt-We-LMR"/>
                             <constraint firstAttribute="bottom" secondItem="pYm-M0-f4Z" secondAttribute="bottom" constant="6" id="j28-tZ-x9k"/>
+                            <constraint firstItem="wL6-04-qfV" firstAttribute="top" secondItem="9Kc-9P-B0H" secondAttribute="bottom" constant="12" id="mQz-7N-fUZ"/>
                             <constraint firstItem="pYm-M0-f4Z" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="6" id="o4s-Zs-awt"/>
                             <constraint firstAttribute="bottom" secondItem="ajg-Qv-wme" secondAttribute="bottom" constant="7" id="o6O-I3-erW"/>
-                            <constraint firstItem="wL6-04-qfV" firstAttribute="centerX" secondItem="Cnc-9Q-0AO" secondAttribute="centerX" id="oy6-Pc-Kpv"/>
                             <constraint firstItem="ajg-Qv-wme" firstAttribute="top" secondItem="H4d-Fw-ZGD" secondAttribute="bottom" constant="4" id="uad-bJ-CaG"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="clearLinesButton" destination="wL6-04-qfV" id="OrT-eF-2yl"/>
                         <outlet property="loadFileButton" destination="5h3-kh-AbZ" id="80h-3z-PT6"/>
-                        <outlet property="mapPointsButton" destination="Cnc-9Q-0AO" id="J11-k7-vgK"/>
                         <outlet property="mapview" destination="H4d-Fw-ZGD" id="Dr3-xp-dor"/>
-                        <outlet property="outputLabel" destination="bPO-wg-hFy" id="dmg-kH-I6R"/>
+                        <outlet property="removeAllLinesButton" destination="wL6-04-qfV" id="xMK-e8-9x9"/>
+                        <outlet property="removeLastLineButton" destination="9Kc-9P-B0H" id="ZwQ-Jt-BtU"/>
                         <outlet property="textField" destination="ajg-Qv-wme" id="pb5-d8-XAJ"/>
                         <outlet property="textFieldButton" destination="pYm-M0-f4Z" id="l2z-ll-KIE"/>
                     </connections>
