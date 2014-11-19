@@ -45,17 +45,21 @@
     self.mapview.delegate = self;
     self.textField.delegate = self;
     self.mapPointsButton.enabled = NO;
-    self.title = @"Map Point Mapper";
+
 }
 
 //- (void)viewDidLoad {
 //    [super viewDidLoad];
-//    
+//    self.mapview.delegate = self;
+//    self.textField.delegate = self;
+//    self.mapPointsButton.enabled = NO;
 //}
 //
 //- (void)viewWillAppear {
 //    [super viewWillAppear];
-//    
+//    self.title = @"Map Point Mapper";
+//    self.outputLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    self.outputLabel.stringValue = @"Map Point Mapper\nv1.1";
 //}
 
 - (IBAction)loadFilePressed:(NSButton *)sender {
