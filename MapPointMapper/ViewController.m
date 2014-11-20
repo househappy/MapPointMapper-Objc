@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Househappy. All rights reserved.
 //
 
-#import "ViewController.h"
 @import MapKit;
+#import "ViewController.h"
 
 @interface DMMMapPoint : NSObject
 @property (nonatomic) CLLocationCoordinate2D coordinate;
@@ -25,7 +25,7 @@
 }
 @end
 
-@interface ViewController() <NSOpenSavePanelDelegate, MKMapViewDelegate, NSTextFieldDelegate>
+@interface ViewController() <MKMapViewDelegate, NSTextFieldDelegate>
 @property (weak) IBOutlet MKMapView *mapview;
 @property (weak) IBOutlet NSButton *loadFileButton;
 @property (weak) IBOutlet NSButton *removeLastLineButton;
@@ -41,6 +41,7 @@
 
 @implementation ViewController
 
+#pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mapview.delegate = self;
@@ -53,11 +54,41 @@
     self.title = @"Map Point Mapper";
 }
 
+#pragma mark - Drawing
+- (void)drawPointsOnMap:(NSArray *)mapPoints {
+    NSInteger count = 0;
+    CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * mapPoints.count);
+    for (DMMMapPoint *mapPoint in mapPoints) {
+        coordinates[count] = mapPoint.coordinate;
+        ++count;
+    }
+    
+    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:count];
+    
+    [self.mapview addOverlay:polyline level:MKOverlayLevelAboveRoads];
+    
+    [self.mapview setNeedsDisplay:YES];
+    [self.mapview setVisibleMapRect:polyline.boundingMapRect animated:YES];
+    
+    free(coordinates);
+}
+
+#pragma mark - Actions
+- (IBAction)removeLastLinePressed:(NSButton *)sender {
+    if (self.mapview.overlays && self.mapview.overlays.count > 0) {
+        [self.mapview removeOverlay:self.mapview.overlays.lastObject];
+    }
+}
+
+- (IBAction)clearLinesButtonPressed:(NSButton *)sender {
+    [self.mapview removeOverlays:self.mapview.overlays];
+}
+
 - (IBAction)loadFilePressed:(NSButton *)sender {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.canChooseDirectories = NO;
-
+    
     [openPanel beginSheetModalForWindow:nil completionHandler:^(NSInteger result) {
         NSLog(@"result: %li", result);
         NSLog(@"%@", [openPanel URLs]);
@@ -78,35 +109,7 @@
     }
 }
 
-- (void)drawPointsOnMap:(NSArray *)mapPoints {
-    NSInteger count = 0;
-    CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * mapPoints.count);
-    for (DMMMapPoint *mapPoint in mapPoints) {
-        coordinates[count] = mapPoint.coordinate;
-        ++count;
-    }
-    
-    MKPolyline *polyline = [MKPolyline polylineWithCoordinates:coordinates count:count];
-    
-    [self.mapview addOverlay:polyline level:MKOverlayLevelAboveRoads];
-    
-    [self.mapview setNeedsDisplay:YES];
-    [self.mapview setVisibleMapRect:polyline.boundingMapRect animated:YES];
-    
-    free(coordinates);
-}
-
-- (IBAction)removeLastLinePressed:(NSButton *)sender {
-    if (self.mapview.overlays && self.mapview.overlays.count > 0) {
-        [self.mapview removeOverlay:self.mapview.overlays.lastObject];
-    }
-}
-
-- (IBAction)clearLinesButtonPressed:(NSButton *)sender {
-    [self.mapview removeOverlays:self.mapview.overlays];
-}
-
-#pragma mark - MapView
+#pragma mark - MKMapViewDelegate
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer *mapOverlayRenderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
@@ -118,7 +121,6 @@
 #pragma mark - Implementation
 - (void)readFileAtURL:(NSURL *)fileURL {
     if (!fileURL) { return; }
-    
     
     if (![[NSFileManager defaultManager] isReadableFileAtPath:fileURL.absoluteString]) {
         NSLog(@"ERROR: Unreadable file at %@", fileURL);
