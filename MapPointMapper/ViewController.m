@@ -35,6 +35,7 @@
 
 @property (weak) IBOutlet NSTextField *textField;
 @property (weak) IBOutlet NSButton *textFieldButton;
+@property (weak) IBOutlet NSColorWell *colorWell;
 
 @property (nonatomic) BOOL parseLatitudeFirst;
 @end
@@ -58,6 +59,7 @@
 - (void)drawPointsOnMap:(NSArray *)mapPoints {
     NSInteger count = 0;
     CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * mapPoints.count);
+    
     for (DMMMapPoint *mapPoint in mapPoints) {
         coordinates[count] = mapPoint.coordinate;
         ++count;
@@ -115,7 +117,7 @@
     MKPolylineRenderer *mapOverlayRenderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
     mapOverlayRenderer.alpha = 1.0;
     mapOverlayRenderer.lineWidth = 4.0;
-    mapOverlayRenderer.strokeColor = [NSColor colorWithRed:59.0f/255.0f green:173.0f/255.0f blue:253.0f/255.0f alpha:1];
+    mapOverlayRenderer.strokeColor = self.colorWell.color;
     return  mapOverlayRenderer;
 }
 #pragma mark - Implementation

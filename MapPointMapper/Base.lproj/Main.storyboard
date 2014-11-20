@@ -296,6 +296,18 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Uf-oL-CYQ">
+                                <rect key="frame" x="92" y="336" width="44" height="23"/>
+                                <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqm-0i-dVB">
+                                <rect key="frame" x="13" y="339" width="68" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line Color" id="eAQ-bQ-ajh">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="H4d-Fw-ZGD" secondAttribute="trailing" id="33F-du-HDL"/>
@@ -321,6 +333,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="colorWell" destination="6Uf-oL-CYQ" id="owP-Li-hBX"/>
                         <outlet property="latlngLabel" destination="y10-0Y-mSs" id="zew-AK-OeY"/>
                         <outlet property="loadFileButton" destination="5h3-kh-AbZ" id="80h-3z-PT6"/>
                         <outlet property="mapview" destination="H4d-Fw-ZGD" id="Dr3-xp-dor"/>
