@@ -149,6 +149,11 @@
         [[NSAlert alertWithError:invalidCountError] runModal];
         return;
     }
+    if (components.count == 2) {
+        NSMutableArray *mutableComponents = [components mutableCopy];
+        [mutableComponents addObjectsFromArray:components];
+        components = mutableComponents;
+    }
     
     NSMutableArray *mapPoints = [@[] mutableCopy];
     for (NSInteger i = 0; i < components.count - 1; i += 2) {
