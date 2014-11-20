@@ -55,6 +55,16 @@
     self.title = @"Map Point Mapper";
 }
 
+#pragma mark - Setters
+- (void)setParseLatitudeFirst:(BOOL)parseLatitudeFirst {
+    if (parseLatitudeFirst) {
+        self.latlngLabel.stringValue = @"Lat/Lng";
+    } else {
+        self.latlngLabel.stringValue = @"Lng/Lat";
+    }
+    _parseLatitudeFirst = parseLatitudeFirst;
+}
+
 #pragma mark - Drawing
 - (void)drawPointsOnMap:(NSArray *)mapPoints {
     NSInteger count = 0;
@@ -104,11 +114,6 @@
 }
 - (IBAction)switchLatLngPressed:(NSButton *)sender {
     self.parseLatitudeFirst = !self.parseLatitudeFirst;
-    if (self.parseLatitudeFirst) {
-        self.latlngLabel.stringValue = @"Lat/Lng";
-    } else {
-        self.latlngLabel.stringValue = @"Lng/Lat";
-    }
 }
 
 #pragma mark - MKMapViewDelegate
