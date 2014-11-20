@@ -143,13 +143,14 @@
     
     NSRegularExpression *matchCoords = [NSRegularExpression regularExpressionWithPattern: @"POLYGON \\(\\((.*)\\)\\)" options:NSRegularExpressionCaseInsensitive error: nil];
     
-    NSTextCheckingResult *justCoords = [[matchCoords matchesInString: input options: 0 range: NSMakeRange(0, [input length])] firstObject];
-    NSString *iDontCare = input;
-    if (justCoords != nil) {
-        iDontCare = [input substringWithRange:[justCoords rangeAtIndex:1]];
+    NSTextCheckingResult *hazMatch = [[matchCoords matchesInString: input options: 0 range: NSMakeRange(0, [input length])] firstObject];
+    NSString *justCoords = input;
+    if (hazMatch) {
+        self.parseLatitudeFirst = false;
+        justCoords = [input substringWithRange:[hazMatch rangeAtIndex:1]];
     }
     
-    NSString *strippedSpaces = [iDontCare stringByReplacingOccurrencesOfString:@"\n" withString:@","];
+    NSString *strippedSpaces = [justCoords stringByReplacingOccurrencesOfString:@"\n" withString:@","];
     
     NSArray *latLongPairs = [strippedSpaces componentsSeparatedByString:@","];
     
