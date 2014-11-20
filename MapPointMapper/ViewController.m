@@ -146,7 +146,7 @@
     NSTextCheckingResult *hazMatch = [[matchCoords matchesInString: input options: 0 range: NSMakeRange(0, [input length])] firstObject];
     NSString *justCoords = input;
     if (hazMatch) {
-        self.parseLatitudeFirst = false;
+        self.parseLatitudeFirst = NO;
         justCoords = [input substringWithRange:[hazMatch rangeAtIndex:1]];
     }
     
