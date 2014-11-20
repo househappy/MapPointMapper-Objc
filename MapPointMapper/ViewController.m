@@ -166,7 +166,7 @@
         if (parts.count % 2 != 0) {
             NSError *invalidCountError = [NSError errorWithDomain:@"com.dmiedema.MapPointMapper" code:-42 userInfo:@{NSLocalizedDescriptionKey: @"Invalid number of map points given"}];
             [[NSAlert alertWithError:invalidCountError] runModal];
-            return;
+            *stop = YES;
         }
         
         if (self.parseLatitudeFirst) {
