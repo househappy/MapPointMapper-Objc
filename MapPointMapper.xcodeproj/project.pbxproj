@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		546CB34A1A1FC0C000E860DD /* HHAParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CB3491A1FC0C000E860DD /* HHAParser.m */; };
+		546CB34D1A1FC0FB00E860DD /* HHALine.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CB34C1A1FC0FB00E860DD /* HHALine.m */; };
+		546CB3501A1FC14600E860DD /* HHACoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 546CB34F1A1FC14600E860DD /* HHACoordinate.m */; };
 		547424B91A1BF0F900A8478C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 547424B81A1BF0F900A8478C /* AppDelegate.m */; };
 		547424BB1A1BF0F900A8478C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 547424BA1A1BF0F900A8478C /* main.m */; };
 		547424BE1A1BF0F900A8478C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 547424BD1A1BF0F900A8478C /* ViewController.m */; };
@@ -27,6 +30,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		546CB3481A1FC0C000E860DD /* HHAParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHAParser.h; path = Parser/HHAParser.h; sourceTree = "<group>"; };
+		546CB3491A1FC0C000E860DD /* HHAParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHAParser.m; path = Parser/HHAParser.m; sourceTree = "<group>"; };
+		546CB34B1A1FC0FB00E860DD /* HHALine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHALine.h; path = Parser/HHALine.h; sourceTree = "<group>"; };
+		546CB34C1A1FC0FB00E860DD /* HHALine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHALine.m; path = Parser/HHALine.m; sourceTree = "<group>"; };
+		546CB34E1A1FC14600E860DD /* HHACoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HHACoordinate.h; path = Parser/HHACoordinate.h; sourceTree = "<group>"; };
+		546CB34F1A1FC14600E860DD /* HHACoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HHACoordinate.m; path = Parser/HHACoordinate.m; sourceTree = "<group>"; };
 		547424B21A1BF0F900A8478C /* MapPointMapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapPointMapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		547424B61A1BF0F900A8478C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		547424B71A1BF0F900A8478C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,6 +135,12 @@
 		547AAF8B1A1EA7E700A0D174 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
+				546CB3481A1FC0C000E860DD /* HHAParser.h */,
+				546CB3491A1FC0C000E860DD /* HHAParser.m */,
+				546CB34B1A1FC0FB00E860DD /* HHALine.h */,
+				546CB34C1A1FC0FB00E860DD /* HHALine.m */,
+				546CB34E1A1FC14600E860DD /* HHACoordinate.h */,
+				546CB34F1A1FC14600E860DD /* HHACoordinate.m */,
 			);
 			name = Parser;
 			sourceTree = "<group>";
@@ -238,9 +253,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				546CB34D1A1FC0FB00E860DD /* HHALine.m in Sources */,
+				546CB34A1A1FC0C000E860DD /* HHAParser.m in Sources */,
 				547424BE1A1BF0F900A8478C /* ViewController.m in Sources */,
 				547424BB1A1BF0F900A8478C /* main.m in Sources */,
 				547424B91A1BF0F900A8478C /* AppDelegate.m in Sources */,
+				546CB3501A1FC14600E860DD /* HHACoordinate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
