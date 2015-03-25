@@ -145,34 +145,45 @@
 }
 
 - (void)parseInput:(NSString *)input {
-    NSString *strippedSpaces = [[input stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"\n" withString:@","];
     
-    NSArray *components = [strippedSpaces componentsSeparatedByString:@","];
+    NSRegularExpression *matchCoords = [NSRegularExpression regularExpressionWithPattern: @"POLYGON \\(\\((.*)\\)\\)" options:NSRegularExpressionCaseInsensitive error: nil];
     
-    if (components.count % 2 != 0) {
-        NSError *invalidCountError = [NSError errorWithDomain:@"com.dmiedema.MapPointMapper" code:-42 userInfo:@{NSLocalizedDescriptionKey: @"Invalid number of map points given"}];
-        [[NSAlert alertWithError:invalidCountError] runModal];
-        return;
+    NSTextCheckingResult *hazMatch = [[matchCoords matchesInString: input options: 0 range: NSMakeRange(0, [input length])] firstObject];
+    NSString *justCoords = input;
+    if (hazMatch) {
+        self.parseLatitudeFirst = NO;
+        justCoords = [input substringWithRange:[hazMatch rangeAtIndex:1]];
     }
-    if (components.count == 2) {
-        NSMutableArray *mutableComponents = [components mutableCopy];
-        [mutableComponents addObjectsFromArray:components];
-        components = mutableComponents;
-    }
+    
+    NSString *strippedSpaces = [justCoords stringByReplacingOccurrencesOfString:@"\n" withString:@","];
+    
+    NSArray *latLongPairs = [strippedSpaces componentsSeparatedByString:@","];
     
     NSMutableArray *mapPoints = [@[] mutableCopy];
-    for (NSInteger i = 0; i < components.count - 1; i += 2) {
+    
+    [latLongPairs enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL *stop) {
+        
+        NSString *trimmedString = [obj stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        
+        NSArray *parts = [trimmedString componentsSeparatedByString:@" "];
         NSString *lat, *lng;
+        
+        if (parts.count % 2 != 0) {
+            NSError *invalidCountError = [NSError errorWithDomain:@"com.dmiedema.MapPointMapper" code:-42 userInfo:@{NSLocalizedDescriptionKey: @"Invalid number of map points given"}];
+            [[NSAlert alertWithError:invalidCountError] runModal];
+            *stop = YES;
+        }
+        
         if (self.parseLatitudeFirst) {
-            lat = [components objectAtIndex:i];
-            lng = [components objectAtIndex:i + 1];
+            lat = [parts firstObject];
+            lng = [parts lastObject];
         } else {
-            lng = [components objectAtIndex:i];
-            lat = [components objectAtIndex:i + 1];
+            lng = [parts firstObject];
+            lat = [parts lastObject];
         }
         
         [mapPoints addObject:[[DMMMapPoint alloc] initWithLatString:lat lngString:lng]];
-    }
+    }];
     
     [self drawPointsOnMap:mapPoints];
 }
